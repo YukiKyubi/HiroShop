@@ -1,0 +1,89 @@
+package HiroShop.dao;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import HiroShop.entity.Bill;
+import HiroShop.mapper.BillMapper;
+
+@Repository
+public class BillDao extends BaseDao {
+	
+	public long getTheLastBillId() {
+		String sql = "SELECT MAX(id) FROM `bill`";
+		long id = jdbcTemplate.queryForObject(sql, new Object[] {}, Long.class);
+		return id;
+	}
+	
+	public List<Bill> getBillsData() {
+		String sql = "SELECT * FROM `bill`";
+		List<Bill> list = jdbcTemplate.query(sql, new BillMapper());
+		return list;
+	}
+	
+	public List<Bill> getBillsDataPagination(int start, int limit) {
+		String sql = "SELECT * FROM `bill` LIMIT " + start + ", " + limit;
+		List<Bill> list = jdbcTemplate.query(sql, new BillMapper());
+		return list;
+	}
+	
+	public Bill getBillById(long id) {
+		String sql = "SELECT * FROM `bill` WHERE id=" + id;
+		Bill bill = jdbcTemplate.queryForObject(sql, new BillMapper());
+		return bill;
+	}
+	
+	public int addBill(Bill bill) {
+		StringBuffer  sql = new StringBuffer();
+		sql.append("INSERT INTO `bill` ");
+		sql.append("(`id`, ");
+		sql.append("`username`, ");
+		sql.append("`name`, ");
+		sql.append("`phone`, ");
+		sql.append("`address`, ");
+		sql.append("`quantity`, ");
+		sql.append("`total`, ");
+		sql.append("`note`, ");
+		sql.append("`createat`) ");
+		sql.append("VALUES ");
+		sql.append("(NULL, ");
+		sql.append("'" + bill.getUsername() + "', ");
+		sql.append("'" + bill.getName() + "', ");
+		sql.append("'" + bill.getPhone() + "', ");
+		sql.append("'" + bill.getAddress() + "', ");
+		sql.append("'" + bill.getQuantity() + "', ");
+		sql.append("'" + bill.getTotal() + "', ");
+		sql.append("'" + bill.getNote() + "', ");
+		sql.append("'" + bill.getCreateat() + "')");
+		int insert = jdbcTemplate.update(sql.toString());
+		return insert;
+	}
+	
+	public int edit(Bill bill) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("UPDATE `bill` SET ");
+		sql.append("`username`='" + bill.getUsername() + "', ");
+		sql.append("`name`='" + bill.getName() + "', ");
+		sql.append("`phone`='" + bill.getPhone() + "', ");
+		sql.append("`address`='" + bill.getAddress() + "', ");
+		sql.append("`quantity`='" + bill.getQuantity() + "', ");
+		sql.append("`total`='"+ bill.getTotal() + "', ");
+		sql.append("`note`='" + bill.getNote() + "' ");
+		sql.append("WHERE bill.id=" + bill.getId());
+		int edit = jdbcTemplate.update(sql.toString());
+		return edit;
+	}
+	
+	public int delete(long id) {
+		String sql = "DELETE FROM `bill` WHERE id=" + id;
+		int delete = jdbcTemplate.update(sql);
+		return delete;
+	}
+	
+	public List<Bill> latestBillsInAPeriodTime(int number) {
+		String sql = "SELECT * FROM `bill` WHERE DATEDIFF(CURRENT_DATE, bill.createat) <= " + number;
+		List<Bill> list = jdbcTemplate.query(sql, new BillMapper());
+		return list;
+	}
+}
