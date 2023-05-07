@@ -83,4 +83,13 @@ public class AdminHomeController extends AdminBaseController {
 		mv.setViewName("error/forbidden403");
 		return mv;
 	}
+	
+	@RequestMapping("admin/logout")
+	public ModelAndView Logout(HttpSession session) {
+		session.removeAttribute("loginsession");
+		session.removeAttribute("rolesession");
+		session.removeAttribute("cart");
+		mv.setViewName("redirect:/logout");
+		return mv;
+	}
 }

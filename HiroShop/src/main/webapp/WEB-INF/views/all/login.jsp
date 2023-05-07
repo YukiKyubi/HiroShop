@@ -38,10 +38,6 @@
                                 </c:if>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                              <a class="forgot-text" href="#">Quên mật khẩu ?</a>
-                            </div>
                             
                             <div class="text-center"><button type="submit">Đăng nhập</button></div>
 

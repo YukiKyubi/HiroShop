@@ -38,6 +38,7 @@
           <li class="dropdown"><a href="<c:url value="/login" />" class="nav-link"><i class="bi bi-person-circle" style="font-size: 22px;"></i></a>
 			<ul>
 				<c:if test="${ not empty loginsession }">
+					<li><a>Hi, ${ loginsession.name }!</a><li>
 					<c:forEach var="item" items="${ rolesession }">
 						<c:if test="${ item == 'admin' }">
 							<li><a href="<c:url value="/admin" />">Hiro-Admin</a></li>

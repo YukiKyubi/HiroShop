@@ -47,7 +47,7 @@
                 </div>
   
                 <div style="text-align: center;">
-                    <img src="assets/img/gundamdemo.png" style="width: 70%;" />
+                    <img src="assets/img/bigicon.png" style="width: 70%;" />
                 </div>
               </div>
   

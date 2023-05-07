@@ -426,7 +426,7 @@ h6 {
 #hero {
   width: 100%;
   height: 80vh;
-  background: rgba(10, 32, 144, 0.9);
+  background: rgba(10, 32, 144, 0.902);
   /* background: #37517e; */
 }
 
@@ -928,7 +928,7 @@ section {
 # Cta
 --------------------------------------------------------------*/
 .cta {
-  background: linear-gradient(rgba(40, 58, 90, 0.9), rgba(40, 58, 90, 0.9)), url("../img/cta-bg.jpg") fixed center center;
+  background: linear-gradient(rgba(40, 58, 90, 0.9), rgba(40, 58, 90, 0.9)), url("../img/banner.png") fixed center center;
   background-size: cover;
   padding: 120px 0;
 }
@@ -2380,6 +2380,123 @@ tbody tr:hover {
 
 .forbidden {
   text-align: center;
+}
+
+.chat {
+  display: none;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  position: fixed;
+  z-index: 9999999;
+  bottom: 0;
+  right: 140px;
+  width: 300px;
+  height: 380px;
+  background-color: white;
+}
+
+.chat-box {
+  height: 340px;
+  padding-top: 46px;
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-y: auto;
+}
+
+.chat-text-box {
+  max-width: 70%;
+  width: fit-content;
+  background-color: #209dd8;
+  border-radius: 30px;
+  margin: 4px 4px;
+}
+
+.chat-text {
+  padding: 6px 26px;
+  color: white;
+}
+
+.y-chat {
+  align-self: flex-end;
+}
+
+.chat-bar {
+  position: absolute;
+  width: 100%;
+  height: 46px;
+  background-color: #209dd8;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name-chat {
+  width: 200px;
+  color: white;
+  padding: 0 10px;
+  margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  text-overflow: ellipsis;
+}
+
+.x-chat {
+  color: white;
+  padding: 0 16px;
+  font-size: 22px;
+}
+
+.chat-inputs {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.form-send {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-input {
+  margin: 5px 10px;
+  flex: 0 0 80%;
+  outline-style: none;
+  border-radius: 20px;
+}
+
+.send-icon {
+  flex: 0 0 10%;
+  font-size: 22px;
+  margin-right: 5px;
+  color: #209dd8;
+}
+
+.chat-icon {
+  position: fixed;
+  bottom: 80px;
+  width: 60px;
+  height: 60px;
+  background-color: #209dd8;
+  right: 20px;
+  border-radius: 50%;
+}
+
+.icon-in {
+  position: absolute;
+  top: 3px;
+  right: 13px;
+  font-size: 35px;
+  font-weight: 600;
+  color: white;
+}
+
+.display_block {
+  display: block;
 }
 
 

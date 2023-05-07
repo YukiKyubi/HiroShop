@@ -73,7 +73,7 @@
                   		</a> 
             		</c:if>
             		<c:if test="${ not empty loginsession }">
-            			<span style="cusor: pointer" data-id="${ productdetails.id }" id="btn" class="cart-btn">Thêm vào giỏ 
+            			<span style="cursor: pointer" data-id="${ productdetails.id }" id="btn" class="cart-btn">Thêm vào giỏ 
                     		<i class="bi bi-minecart" style="font-size: 22px;"></i>
                   		</span>  
             		</c:if> 

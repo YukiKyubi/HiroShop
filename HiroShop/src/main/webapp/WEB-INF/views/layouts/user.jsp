@@ -17,7 +17,7 @@
 
   <!-- Favicons -->
   <link href="<c:url value="/assets/img/favicon.png" />" rel="icon">
-  <link href="<c:url value="/assets/img/apple-touch-icon.png" />" rel="apple-touch-icon">
+  <link href="<c:url value="/assets/img/bigicon.png" />" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -93,6 +93,7 @@
     }
 
   </script>
+  
   <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/jquery/jquery-3.6.4.min.js"></script>
 </body>
 

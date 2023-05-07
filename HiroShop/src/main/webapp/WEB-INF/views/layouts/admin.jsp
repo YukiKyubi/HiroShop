@@ -48,9 +48,9 @@
 
 	<main class="admin-container">
     	<div class="side-box">
-      		<h1 class="admin-logo"><a href="index.html">Hiro-Admin</a></h1>
+      		<h1 class="admin-logo"><a href="<c:url value="/admin" />">Hiro-Admin</a></h1>
       		<ul class="big">
-        		<li class="item-li1"><a href="#" class="text-li1">Dashboard</a></li>
+        		<li class="item-li1"><a href="<c:url value="/admin" />" class="text-li1">Dashboard</a></li>
         		<li class="item-li1">
           			<div class="click text-li1 d-flex align-items-center space-between">
             			<a href="#" class="table-text">Quản lý bảng</a>
@@ -69,6 +69,7 @@
           			<li class="item-li2"><a class="text-li2" href="<c:url value="/admin/billdetails" />">Chi tiết hóa đơn</a></li>
           			<li class="item-li2"><a class="text-li2" href="<c:url value="/admin/slide" />">Slide</a></li>
         		</ul>
+        		<li class="item-li1"><a href="<c:url value="/admin/logout" />" class="text-li1">Đăng xuất</a></li>
       		</ul>
     	</div>
     	<div class="content-box">

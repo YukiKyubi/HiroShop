@@ -88,7 +88,7 @@
                 	
                 	<c:if test="${ empty pagination }">
                 		<div class="col-lg-12" style="text-align: center; font-size: 22px">
-                			<span tyle="text-align: center; font-size: 22px; width:100%">Không có sản phẩm nào</span>
+                			<span tyle="text-align: center; font-size: 22px; width:100%">Không có sản phẩm nào phù hợp với từ khóa</span>
                 		</div>
                 	</c:if>
            
