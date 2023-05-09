@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,7 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import HiroShop.dto.PaginationDto;
 import HiroShop.entity.Bill;
+import HiroShop.entity.BillDetails;
 import HiroShop.service.IPaginationService;
+import HiroShop.service.IProductService;
+import HiroShop.service.IAccountService;
+import HiroShop.service.IBillDetailsService;
 import HiroShop.service.IBillService;
 
 @Controller
@@ -22,6 +28,15 @@ public class AdminBillController extends AdminBaseController {
 	
 	@Autowired
 	private IBillService billService;
+	
+	@Autowired
+	private IBillDetailsService billdetailsService;
+	
+	@Autowired
+	private IProductService productService;
+	
+	@Autowired
+	private IAccountService accountService;
 	
 	@Autowired
 	private IPaginationService paginationService;
@@ -36,6 +51,7 @@ public class AdminBillController extends AdminBaseController {
 			mv.addObject("paginationinfo", paginatioInfo);
 			mv.addObject("pagination", pagination);
 			mv.addObject("totaldata", totalData);
+			mv.addObject("accounts", accountService.getAccountsData());
 			return mv;
 		}
 		catch (Exception e) {
@@ -54,6 +70,7 @@ public class AdminBillController extends AdminBaseController {
 			mv.addObject("paginationinfo", paginatioInfo);
 			mv.addObject("pagination", pagination);
 			mv.addObject("totaldata", totalData);
+			mv.addObject("accounts", accountService.getAccountsData());
 			return mv;
 		}
 		catch (Exception e) {
@@ -117,31 +134,55 @@ public class AdminBillController extends AdminBaseController {
 		}
 	}
 	
-	@RequestMapping(value = "/admin/deletebill{id}", method = RequestMethod.GET)
-	public ModelAndView Delete(@PathVariable long id) {
-		mv.setViewName("admin/bill/delete");
-		try {
-			mv.addObject("deletebill", billService.getBillById(id));
-			return mv;
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return mv;
-		}
+//	@RequestMapping(value = "/admin/deletebill{id}", method = RequestMethod.GET)
+//	public ModelAndView Delete(@PathVariable long id) {
+//		mv.setViewName("admin/bill/delete");
+//		try {
+//			mv.addObject("deletebill", billService.getBillById(id));
+//			return mv;
+//		}
+//		catch (Exception e) {
+//			e.printStackTrace();
+//			return mv;
+//		}
+//	}
+//	
+//	@RequestMapping(value = "/admin/deletebill{id}", method = RequestMethod.POST)
+//	public ModelAndView Delete(@PathVariable long id, @ModelAttribute("deletebill") Bill bill) {
+//		mv.setViewName("admin/bill/delete");
+//		try {
+//			billService.delete(id);
+//			mv.setViewName("redirect:/admin/bill");
+//			return mv;
+//		}
+//		catch (Exception e) {
+//			e.printStackTrace();
+//			return mv;
+//		}
+//	}
+	
+	@RequestMapping("admin/billdetails{id}")
+	public ModelAndView BillDetails(@PathVariable long id) {
+		mv.setViewName("admin/bill/billdetails");
+		mv.addObject("billdetails", billdetailsService.getBillDetailsByBillId(id));
+		mv.addObject("products", productService.getProductsData());
+		return mv;
 	}
 	
-	@RequestMapping(value = "/admin/deletebill{id}", method = RequestMethod.POST)
-	public ModelAndView Delete(@PathVariable long id, @ModelAttribute("deletebill") Bill bill) {
-		mv.setViewName("admin/bill/delete");
-		try {
-			billService.delete(id);
-			mv.setViewName("redirect:/admin/bill");
-			return mv;
+	@RequestMapping("admin/confirm{id}")
+	public String ConfirmBill(@PathVariable long id, HttpServletRequest request) {
+		billService.confirmBill(id);
+		return "redirect:" + request.getHeader("Referer");
+	}
+	
+	@RequestMapping("admin/deletebill{id}")
+	public String DeleteBill(@PathVariable long id, HttpServletRequest request) {
+		List<BillDetails> list = billdetailsService.getBillDetailsByBillId(id);
+		for(BillDetails item : list) {
+			productService.updateQuantity(item.getProduct_id(), productService.getProductById(item.getProduct_id()).getQuantity() + item.getQuantity());
 		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return mv;
-		}
+		billService.delete(id);
+		return "redirect:" + request.getHeader("Referer");
 	}
 	
 	public String formattedCurrentDate() {

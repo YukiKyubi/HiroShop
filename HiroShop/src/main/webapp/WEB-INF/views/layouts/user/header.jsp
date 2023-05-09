@@ -22,7 +22,7 @@
             </c:forEach>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="#team">Tin tức</a></li>
+          <!-- <li><a class="nav-link scrollto" href="#team">Tin tức</a></li> -->
           <li><a class="nav-link" href="<c:url value="/contact" />">Liên hệ</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -38,12 +38,17 @@
           <li class="dropdown"><a href="<c:url value="/login" />" class="nav-link"><i class="bi bi-person-circle" style="font-size: 22px;"></i></a>
 			<ul>
 				<c:if test="${ not empty loginsession }">
-					<li><a>Hi, ${ loginsession.name }!</a><li>
+					<li style="cursor: none"><a>Hi, ${ loginsession.name }!</a><li>
+					<c:set var="check" value="0" />
 					<c:forEach var="item" items="${ rolesession }">
 						<c:if test="${ item == 'admin' }">
 							<li><a href="<c:url value="/admin" />">Hiro-Admin</a></li>
+							<c:set var="check" value="1" />
 						</c:if>
 					</c:forEach>
+					<c:if test="${ check == 0 }">
+						<li><a href="<c:url value="/bill" />">Đơn hàng của bạn</a></li>
+					</c:if>
 					<li><a href="<c:url value="/logout" />">Đăng xuất</a></li>
 				</c:if>
 				

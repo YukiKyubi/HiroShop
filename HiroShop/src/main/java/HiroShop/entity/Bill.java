@@ -5,13 +5,13 @@ import java.math.BigDecimal;
 public class Bill {
 	private long id;
 	private String username;
-	private String name;
 	private String phone;
 	private String address;
 	private int quantity;
 	private BigDecimal total;
 	private String note;
 	private String createat;
+	private boolean status;
 
 	public Bill() {
 		super();
@@ -31,14 +31,6 @@ public class Bill {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getPhone() {
@@ -87,6 +79,14 @@ public class Bill {
 
 	public void setCreateat(String createat) {
 		this.createat = createat;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 }

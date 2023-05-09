@@ -39,23 +39,23 @@ public class BillDao extends BaseDao {
 		sql.append("INSERT INTO `bill` ");
 		sql.append("(`id`, ");
 		sql.append("`username`, ");
-		sql.append("`name`, ");
 		sql.append("`phone`, ");
 		sql.append("`address`, ");
 		sql.append("`quantity`, ");
 		sql.append("`total`, ");
 		sql.append("`note`, ");
-		sql.append("`createat`) ");
+		sql.append("`createat`, ");
+		sql.append("`status`) ");
 		sql.append("VALUES ");
 		sql.append("(NULL, ");
 		sql.append("'" + bill.getUsername() + "', ");
-		sql.append("'" + bill.getName() + "', ");
 		sql.append("'" + bill.getPhone() + "', ");
 		sql.append("'" + bill.getAddress() + "', ");
 		sql.append("'" + bill.getQuantity() + "', ");
 		sql.append("'" + bill.getTotal() + "', ");
 		sql.append("'" + bill.getNote() + "', ");
-		sql.append("'" + bill.getCreateat() + "')");
+		sql.append("'" + bill.getCreateat() + "', ");
+		sql.append("'" + bill.isStatus() + "')");
 		int insert = jdbcTemplate.update(sql.toString());
 		return insert;
 	}
@@ -64,7 +64,6 @@ public class BillDao extends BaseDao {
 		StringBuffer sql = new StringBuffer();
 		sql.append("UPDATE `bill` SET ");
 		sql.append("`username`='" + bill.getUsername() + "', ");
-		sql.append("`name`='" + bill.getName() + "', ");
 		sql.append("`phone`='" + bill.getPhone() + "', ");
 		sql.append("`address`='" + bill.getAddress() + "', ");
 		sql.append("`quantity`='" + bill.getQuantity() + "', ");
@@ -82,8 +81,20 @@ public class BillDao extends BaseDao {
 	}
 	
 	public List<Bill> latestBillsInAPeriodTime(int number) {
-		String sql = "SELECT * FROM `bill` WHERE DATEDIFF(CURRENT_DATE, bill.createat) <= " + number;
+		String sql = "SELECT * FROM `bill` WHERE DATEDIFF(CURRENT_DATE, bill.createat) <= " + number + " AND status=true";
 		List<Bill> list = jdbcTemplate.query(sql, new BillMapper());
 		return list;
+	}
+	
+	public List<Bill> getBillsByUsername(String username) {
+		String sql = "SELECT * FROM `bill` WHERE username='" + username + "'";
+		List<Bill> list = jdbcTemplate.query(sql, new BillMapper());
+		return list;
+	}
+	
+	public int confirmBill(long id) {
+		String sql = "UPDATE `bill` SET status=true WHERE id=" + id;
+		int update = jdbcTemplate.update(sql);
+		return update;
 	}
 }

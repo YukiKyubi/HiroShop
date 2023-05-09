@@ -115,7 +115,6 @@ public class UserCartController extends UserBaseController {
 		Account loginaccount = (Account) session.getAttribute("loginsession");
 		if(loginaccount != null) {
 			bill.setUsername(loginaccount.getUsername());
-			bill.setName(loginaccount.getName());
 		}
 		mv.addObject("bill", bill);
 		return mv;
@@ -185,8 +184,8 @@ public class UserCartController extends UserBaseController {
                     Message.RecipientType.TO,
                     InternetAddress.parse(email)
             );
-            message.setSubject("Hóa đơn của bạn", "utf-8");
-            message.setText("Thanh toán đơn hàng " + totalPrice + " vnd thành công!" 
+            message.setSubject("Đơn hàng của bạn", "utf-8");
+            message.setText("Đơn hàng của bạn  " + totalPrice + " vnđ được đặt thành công!" 
                     + "\n\n Please do not spam my email!", "utf-8");
 
             Transport.send(message);

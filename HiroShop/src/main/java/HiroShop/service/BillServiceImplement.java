@@ -46,4 +46,12 @@ public class BillServiceImplement implements IBillService {
 		return billDao.latestBillsInAPeriodTime(number);
 	}
 
+	public List<Bill> getBillsByUsername(String username) {
+		return billDao.getBillsByUsername(username);
+	}
+
+	public int confirmBill(long id) {
+		return billDao.confirmBill(id);
+	}
+
 }

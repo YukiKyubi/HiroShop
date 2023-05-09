@@ -80,10 +80,10 @@
                       </label>
                       <label id="total_quantity">${ totalQuantity } sản phẩm </label>
                       <c:if test="${ empty loginsession }">
-                      	<a href="<c:url value="/login" />" class="pay-btn">Thanh toán</a>
+                      	<a href="<c:url value="/login" />" class="pay-btn">Đặt hàng</a>
                       </c:if>
                       <c:if test="${ not empty loginsession }">
-                      	<a href="<c:url value="/checkout" />" class="pay-btn">Thanh toán</a>
+                      	<a href="<c:url value="/checkout" />" class="pay-btn">Đặt hàng</a>
                       </c:if>
                     </div>
                 </div>
@@ -98,8 +98,8 @@
   <c:if test="${ success }">
   	<div class="mess-container d-flex">
     <div class="mess-box">
-      <label class="mess-success">Thanh toán thành công !</label>
-      <a href="<c:url value="/" />" class="login-link">Tiếp tục mua hàng<a>
+      <label class="mess-success">Đặt hàng thành công !</label>
+      <a href="<c:url value="/bill" />" class="login-link">Đơn hàng của bạn<a>
     </div>
   </div>
   </c:if>

@@ -24,4 +24,6 @@ public interface IBillDetailsService {
 	public List<Long> topSellProducts();
 	
 	public List<Long> notTopSellProducts();
+	
+	public List<BillDetails> getBillDetailsByBillId(long bill_id);
 }

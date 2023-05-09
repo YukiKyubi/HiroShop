@@ -41,7 +41,7 @@
             <div class="form-group row">
               <label for="imageupload" class="col-lg-2 col-form-label">Hình ảnh</label>
               <div class="col-lg-6">
-              	<div><img id="image" class="img-fluid" src="/" alt="Image" /></div>
+              	<div><img id="image" class="img-fluid" src="<c:url value="/assets/img/no_image.png" />" alt="Image" /></div>
               	<input type="file" class="form-control-file" name="imageupload" id="imageupload" onchange=loadFile(event) />
               </div>
               <div class="e-message"></div>

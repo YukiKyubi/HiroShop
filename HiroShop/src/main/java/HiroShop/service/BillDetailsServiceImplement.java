@@ -46,4 +46,8 @@ public class BillDetailsServiceImplement implements IBillDetailsService {
 		return billdetailsDao.notTopSellProducts();
 	}
 
+	public List<BillDetails> getBillDetailsByBillId(long bill_id) {
+		return billdetailsDao.getBillDetailsByBillId(bill_id);
+	}
+
 }

@@ -13,7 +13,7 @@
         <ol>
           <li><a href="<c:url value="/" />">Trang chủ</a></li>
           <li><a href="<c:url value="/cart" />">Giỏ hàng</a></li>
-          <li>Thanh toán</li>
+          <li>Đặt hàng</li>
         </ol>
 
       </div>
@@ -27,12 +27,7 @@
             <div class="col-lg-12 mt-5 mt-lg-0 d-flex align-items-stretch">
             	<form:form action="checkout" method="post" modelAttribute="bill" class="php-email-form" id="checkout-form">
             		<div class="row">
-                  		<div class="form-group col-md-6">
-                    		<label for="name">Họ tên</label>
-                    		<form:input path="name" type="text" class="form-control" name="name" id="name" />
-                    		<div class="e-message"></div>
-                  		</div>
-                  		<div class="form-group col-md-6">
+                  		<div class="form-group col-md-12">
                     		<label for="phone">Số điện thoại</label>
                     		<form:input path="phone" type="text" class="form-control" name="phone" id="phone" />
                     		<div class="e-message"></div>
@@ -62,7 +57,7 @@
                      		</label>
                     	</div>
                   	</div>
-                	<div class="text-center"><button type="submit">Thanh toán</button></div>
+                	<div class="text-center"><button type="submit">Đặt hàng</button></div>
             	</form:form>
             </div>
   

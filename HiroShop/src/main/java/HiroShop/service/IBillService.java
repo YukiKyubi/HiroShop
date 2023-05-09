@@ -24,4 +24,8 @@ public interface IBillService {
 	public int delete(long id);
 	
 	public List<Bill> latestBillsInAPeriodTime(int number);
+	
+	public List<Bill> getBillsByUsername(String username);
+	
+	public int confirmBill(long id);
 }

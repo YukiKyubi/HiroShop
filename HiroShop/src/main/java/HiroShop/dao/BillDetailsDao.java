@@ -71,6 +71,7 @@ public class BillDetailsDao extends BaseDao {
 		sql.append("ON bill.id = billdetails.bill_id ");
 		sql.append("WHERE DATEDIFF(CURRENT_DATE, bill.createat) <= 30 ");
 		sql.append("AND product_id > 4 ");
+		sql.append("AND bill.status = true ");
 		sql.append("GROUP BY billdetails.product_id ");
 		sql.append("HAVING SUM(billdetails.quantity) >= 30");
 		List<Long> list = jdbcTemplate.queryForList(sql.toString(), Long.class);
@@ -84,9 +85,16 @@ public class BillDetailsDao extends BaseDao {
 		sql.append("ON bill.id = billdetails.bill_id ");
 		sql.append("WHERE DATEDIFF(CURRENT_DATE, bill.createat) > 30 ");
 		sql.append("AND product_id > 4 ");
+		sql.append("AND bill.status = true ");
 		sql.append("GROUP BY billdetails.product_id ");
 		sql.append("HAVING SUM(billdetails.quantity) < 30");
 		List<Long> list = jdbcTemplate.queryForList(sql.toString(), Long.class);
+		return list;
+	}
+	
+	public List<BillDetails> getBillDetailsByBillId(long bill_id) {
+		String sql = "SELECT * FROM `billdetails` WHERE bill_id='" + bill_id + "'";
+		List<BillDetails> list = jdbcTemplate.query(sql, new BillDetailsMapper());
 		return list;
 	}
 }
