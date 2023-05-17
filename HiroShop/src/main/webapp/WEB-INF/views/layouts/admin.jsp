@@ -63,7 +63,6 @@
           			<li class="item-li2"><a class="text-li2" href="<c:url value="/admin/product" />">Sản phẩm</a></li>
           			<li class="item-li2"><a class="text-li2" href="<c:url value="/admin/image" />">Hình ảnh</a></li>
           			<li class="item-li2"><a class="text-li2" href="<c:url value="/admin/account" />">Tài khoản</a></li>
-          			<li class="item-li2"><a class="text-li2" href="<c:url value="/admin/role" />">Phân quyền</a></li>
           			<li class="item-li2"><a class="text-li2" href="<c:url value="/admin/cart" />">Giỏ hàng</a></li>
           			<li class="item-li2"><a class="text-li2" href="<c:url value="/admin/bill" />">Hóa đơn</a></li>
           			<li class="item-li2"><a class="text-li2" href="<c:url value="/admin/slide" />">Slide</a></li>

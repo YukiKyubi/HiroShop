@@ -39,16 +39,13 @@
 			<ul>
 				<c:if test="${ not empty loginsession }">
 					<li style="cursor: none"><a>Hi, ${ loginsession.name }!</a><li>
-					<c:set var="check" value="0" />
-					<c:forEach var="item" items="${ rolesession }">
-						<c:if test="${ item == 'admin' }">
-							<li><a href="<c:url value="/admin" />">Hiro-Admin</a></li>
-							<c:set var="check" value="1" />
-						</c:if>
-					</c:forEach>
-					<c:if test="${ check == 0 }">
+					<c:if test="${ rolesession == 'admin, user' }">
+						<li><a href="<c:url value="/admin" />">Hiro-Admin</a></li>
+					</c:if>
+					<c:if test="${ rolesession == 'user' }">
 						<li><a href="<c:url value="/bill" />">Đơn hàng của bạn</a></li>
 					</c:if>
+					<li><a href="<c:url value="/changepass" />">Đổi mật khẩu</a></li>
 					<li><a href="<c:url value="/logout" />">Đăng xuất</a></li>
 				</c:if>
 				

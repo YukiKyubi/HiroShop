@@ -45,4 +45,8 @@ public class AccountServiceImplement implements IAccountService {
 		return accountDao.getAccountsDataPagination(start, limit);
 	}
 
+	public int setNewPassword(String password, String username) {
+		return accountDao.setNewPassword(password, username);
+	}
+
 }

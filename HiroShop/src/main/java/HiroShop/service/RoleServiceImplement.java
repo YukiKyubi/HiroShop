@@ -42,7 +42,11 @@ public class RoleServiceImplement implements IRoleService {
 		return roleDao.getRoleById(id);
 	}
 
-	public List<String> getRoleStringByAccountId(long account_id) {
-		return roleDao.getRoleStringByAccountId(account_id);
+	public String getRoleByAccountId(long account_id) {
+		return roleDao.getRoleByAccountId(account_id);
+	}
+
+	public int setRoleByAccountId(long account_id, String role) {
+		return roleDao.setRoleByAccountId(account_id, role);
 	}
 }

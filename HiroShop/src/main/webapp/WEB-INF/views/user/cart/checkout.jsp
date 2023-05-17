@@ -75,8 +75,6 @@
     	        formGroupSelector: '.form-group',
     	        errorSelector: '.e-message',
     	        rules: [
-    	          Validator.isRequired('#name'),
-    	          Validator.isValidName('#name'),
     	          Validator.isRequired('#phone'),
     	          Validator.isPhoneNumber('#phone'),
     	          Validator.isRequired('#email'),

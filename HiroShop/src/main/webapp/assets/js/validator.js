@@ -153,7 +153,8 @@ Validator.isValidName = function (selector, message) {
     return {
         selector: selector,
         test: function(value) {
-            var regex = /^[a-zA-Z0-9\u00C0-\u017F]+$/;
+            var regex = /^[\p{L}\p{N}\s]+$/u;
+            console.log(regex.test(value))
             return regex.test(value) ? undefined : message || 'Họ tên không bao gồm các ký tự đặc biệt'
         }
     }

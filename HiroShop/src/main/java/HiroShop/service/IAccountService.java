@@ -22,4 +22,6 @@ public interface IAccountService {
 	public int delete(long id);
 	
 	public List<Account> getAccountsDataPagination(int start, int limit);
+	
+	public int setNewPassword(String password, String username);
 }

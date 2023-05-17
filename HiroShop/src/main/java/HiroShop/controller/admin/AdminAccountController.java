@@ -9,18 +9,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import HiroShop.dto.PaginationDto;
 import HiroShop.entity.Account;
 import HiroShop.service.IAccountService;
 import HiroShop.service.IPaginationService;
+import HiroShop.service.IRoleService;
 
 @Controller
 public class AdminAccountController extends AdminBaseController {
 	
 	@Autowired
 	private IAccountService accountService;
+	
+	@Autowired
+	private IRoleService roleService;
 	
 	@Autowired
 	private IPaginationService paginationService;
@@ -35,6 +40,7 @@ public class AdminAccountController extends AdminBaseController {
 			mv.addObject("paginationinfo", paginatioInfo);
 			mv.addObject("pagination", pagination);
 			mv.addObject("totaldata", totalData);
+			mv.addObject("roles", roleService.getRolesData());
 			return mv;
 		}
 		catch (Exception e) {
@@ -53,6 +59,7 @@ public class AdminAccountController extends AdminBaseController {
 			mv.addObject("paginationinfo", paginatioInfo);
 			mv.addObject("pagination", pagination);
 			mv.addObject("totaldata", totalData);
+			mv.addObject("roles", roleService.getRolesData());
 			return mv;
 		}
 		catch (Exception e) {
@@ -78,8 +85,9 @@ public class AdminAccountController extends AdminBaseController {
 	public ModelAndView Create(@ModelAttribute("newaccount") Account account) {
 		mv.setViewName("admin/account/create");
 		try {
-			account.setIs_verified(false);
 			accountService.addAccount(account);
+			Account created = accountService.getAccountByUsername(account.getUsername());
+			roleService.setRole(created.getId(), "user");
 			mv.setViewName("redirect:/admin/account");
 			return mv;
 		}
@@ -94,6 +102,7 @@ public class AdminAccountController extends AdminBaseController {
 		mv.setViewName("admin/account/edit");
 		try {
 			mv.addObject("editaccount", accountService.getAccountById(id));
+			mv.addObject("role", roleService.getRoleByAccountId(id));
 			return mv;
 		}
 		catch (Exception e) {
@@ -103,11 +112,12 @@ public class AdminAccountController extends AdminBaseController {
 	}
 	
 	@RequestMapping(value = "/admin/editaccount{id}", method = RequestMethod.POST)
-	public ModelAndView Edit(@PathVariable long id, @ModelAttribute("editaccount") Account account) {
+	public ModelAndView Edit(@PathVariable long id, @ModelAttribute("editaccount") Account account, @RequestParam("role") String role) {
 		mv.setViewName("admin/account/edit");
 		try {
 			account.setPassword(BCrypt.hashpw(account.getPassword(), BCrypt.gensalt(12)));
 			accountService.edit(account);
+			roleService.setRoleByAccountId(account.getId(), role);
 			mv.setViewName("redirect:/admin/account");
 			return mv;
 		}
@@ -122,6 +132,7 @@ public class AdminAccountController extends AdminBaseController {
 		mv.setViewName("admin/account/delete");
 		try {
 			mv.addObject("deleteaccount", accountService.getAccountById(id));
+			mv.addObject("roles", roleService.getRolesData());
 			return mv;
 		}
 		catch (Exception e) {

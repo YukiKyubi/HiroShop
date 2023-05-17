@@ -131,6 +131,9 @@ public class UserCartController extends UserBaseController {
 		bill.setQuantity(Integer.parseInt(session.getAttribute("totalQuantity").toString()));
 		bill.setTotal(BigDecimal.valueOf(Double.parseDouble(session.getAttribute("totalPrice").toString())).setScale(2,	RoundingMode.HALF_UP));
 		bill.setCreateat(formattedCurrentDate());
+		String mailUsername = bill.getUsername();
+		bill.setUsername(username);
+		bill.setStatus(false);
 		try {		
 			int insert = billService.addBill(bill);
 			if(insert > 0) {
@@ -145,7 +148,7 @@ public class UserCartController extends UserBaseController {
 					billdetails.setTotal(item.getValue().getTotalPrice());
 					billdetailsService.addBillDetails(billdetails);
 				}
-				sendMail(BigDecimal.valueOf(Double.parseDouble(session.getAttribute("totalPrice").toString())).setScale(2, RoundingMode.HALF_UP), username);
+				sendMail(BigDecimal.valueOf(Double.parseDouble(session.getAttribute("totalPrice").toString())).setScale(2, RoundingMode.HALF_UP), mailUsername);
 				session.removeAttribute("cart");
 				cartService.deleteCartByUsername(username);
 				mv.addObject("success", true);

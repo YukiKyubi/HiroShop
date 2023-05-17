@@ -29,18 +29,18 @@
               <div class="e-message"></div>
             </div>
             <div class="form-group row">
-              <label for="verify" class="col-lg-2 col-form-label">Đã xác thực</label>
+              <label for="veole" class="col-lg-2 col-form-label">Quyền</label>
               <div class="col-lg-6">
-              	<form:select path="is_verified" id="verify">
-              	<c:if test="${ editaccount.is_verified }">
-              		<option value="true" selected>true</option>
-              		<option value="false">false</option>
+              	<select id="role" name="role">
+              	<c:if test="${ role == 'user' }">
+              		<option value="user" selected>user</option>
+              		<option value="admin, user">admin, user</option>
               	</c:if>
-              	<c:if test="${ editaccount.is_verified == false }">
-              		<option value="true">true</option>
-              		<option value="false" selected>false</option>
+              	<c:if test="${ role == 'admin, user' }">
+              		<option value="user">user</option>
+              		<option value="admin, user" selected>admin, user</option>
               	</c:if>
-              	</form:select>
+              	</select>
               </div>
             </div>
             <div class="form-group row for-btn">

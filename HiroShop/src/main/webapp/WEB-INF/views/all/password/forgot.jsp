@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/all/taglib.jsp" %>
 
-<title>Đăng nhập</title>
+<title>Quên mật khẩu</title>
 <body>
 	<div class="box">
 
@@ -18,36 +18,18 @@
                     <div class="row form-padding">
                         <div class="col-lg-12 mt-5 mt-lg-0 d-flex align-items-stretch">
                         
-                        <form:form action="login" method="post" modelAttribute="loginaccount" class="php-email-form" id="login-form">
+                        <form:form action="forgotpass" method="post" modelAttribute="forgotaccount" class="php-email-form" id="forgot-form">
                         	<div class="form-group">
                                 <label for="username">Tên đăng nhập</label>
                                 <form:input path="username" type="text" class="form-control" name="username" id="username" />
                                 <div class="e-message">
                                 <c:if test="${ not empty isexist }">
-                                	Tài khoản không chính xác !
-                                </c:if>
-                                </div>
-                            </div>
-        
-                            <div class="form-group">
-                                <label for="password">Mật khẩu</label>
-                                <form:input path="password" type="password" class="form-control" name="password" id="password"/>
-                                <div class="e-message">
-                                <c:if test="${ not empty iscorrect }">
-                                	Mật khẩu không chính xác !
+                                	Tài khoản không chính xác!
                                 </c:if>
                                 </div>
                             </div>
                             
-                            <div class="form-group">
-                              <a class="forgot-text" href="<c:url value="/forgotpass" />">Quên mật khẩu ?</a>
-                            </div>
-                            
-                            <div class="text-center"><button type="submit">Đăng nhập</button></div>
-
-                            <div class="line"></div>
-
-                            <a href="<c:url value="/signup" />" class="new-acc">Tạo tài khoản mới</a>
+                            <div class="text-center"><button type="submit">Nhận mã xác nhận</button></div>
                         </form:form>
                         
                         </div>
@@ -65,13 +47,11 @@
   <content tag="script">
   	<script>
 	  	Validator({
-	        form: '#login-form',
+	        form: '#forgot-form',
 	        formGroupSelector: '.form-group',
 	        errorSelector: '.e-message',
 	        rules: [
 	          Validator.isRequired('#username'),
-	          Validator.isEmail('#username'),
-	          Validator.isRequired('#password')
 	        ]
 	      })
   	</script>

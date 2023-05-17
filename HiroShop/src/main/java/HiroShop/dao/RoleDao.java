@@ -53,9 +53,15 @@ public class RoleDao extends BaseDao {
 		return role;
 	}
 	
-	public List<String> getRoleStringByAccountId(long account_id) {
+	public String getRoleByAccountId(long account_id) {
 		String sql = "SELECT role FROM `role` WHERE account_id = " + account_id;
-		List<String> roles = jdbcTemplate.queryForList(sql, String.class);
+		String roles = jdbcTemplate.queryForObject(sql, new Object[] {}, String.class);
 		return roles;
+	}
+	
+	public int setRoleByAccountId(long account_id, String role) {
+		String sql = "UPDATE `role` SET `role`='" + role + "' WHERE account_id='" + account_id + "'";
+		int update = jdbcTemplate.update(sql);
+		return update;
 	}
 }

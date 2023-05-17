@@ -19,7 +19,7 @@
               		<th scope="col">Họ tên</th>
               		<th scope="col">Tên tài khoản</th>
               		<th scope="col">Mật khẩu</th>
-              		<th scope="col">Đã xác thực</th>
+              		<th style="min-width: 120px" scope="col">Quyền</th>
             	</tr>
           	</thead>
 			<tbody style="vertical-align: middle;">
@@ -32,7 +32,13 @@
               		<td>${ item.name }</td>
               		<td>${ item.username }</td>
               		<td>${ item.password }</td>
-              		<td>${ item.is_verified }</td>
+              		<td>
+              		<c:forEach var="role" items="${ roles }">
+              			<c:if test="${ role.account_id == item.id }">
+              				${ role.role }
+              			</c:if>
+              		</c:forEach>
+              		</td>
             	</tr>
           	</c:forEach>
           	</tbody>

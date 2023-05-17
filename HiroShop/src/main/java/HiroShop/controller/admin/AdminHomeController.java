@@ -33,12 +33,10 @@ public class AdminHomeController extends AdminBaseController {
 			return mv;
 		}
 		else {
-			List<String> roles = (List<String>) session.getAttribute("rolesession");
+			String role = (String) session.getAttribute("rolesession");
 			int count = 0;
-			for(String role : roles) {
-				if(role.equals("admin")) {
-					count ++;
-				}
+			if(role.equals("admin, user")) {
+				count++;
 			}
 			if(count == 0) {
 				mv.setViewName("redirect:/error/forbidden403");
@@ -89,7 +87,7 @@ public class AdminHomeController extends AdminBaseController {
 		session.removeAttribute("loginsession");
 		session.removeAttribute("rolesession");
 		session.removeAttribute("cart");
-		mv.setViewName("redirect:/logout");
+		mv.setViewName("redirect:/login");
 		return mv;
 	}
 }

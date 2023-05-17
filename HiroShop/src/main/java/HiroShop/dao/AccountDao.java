@@ -67,4 +67,10 @@ public class AccountDao extends BaseDao {
 		List<Account> pagination = jdbcTemplate.query(sql, new AccountMapper());
 		return pagination;
 	}
+	
+	public int setNewPassword(String password, String username) {
+		String sql = "UPDATE `account` SET password='" + password + "' WHERE username='" + username + "'";
+		int update = jdbcTemplate.update(sql);
+		return update;
+	}
 }

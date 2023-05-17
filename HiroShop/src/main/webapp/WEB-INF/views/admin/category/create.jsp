@@ -17,7 +17,7 @@
             <div class="form-group row">
               <label for="logoupload" class="col-lg-2 col-form-label">Logo</label>
               <div class="col-lg-6">
-              	<div><img id="logo" class="img-fluid" src="/" alt="Image" /></div>
+              	<div><img id="logo" class="img-fluid" src="<c:url value="/assets/img/no_image.png" />" alt="Image" /></div>
               	<input type="file" class="form-control-file" name="logoupload" id="logoupload" onchange=loadLogo(event) />
               </div>
               <div class="e-message"></div>
@@ -25,7 +25,7 @@
           	<div class="form-group row">
               <label for="iconupload" class="col-lg-2 col-form-label">Icon</label>
               <div class="col-lg-6">
-              	<div><img id="icon" class="img-fluid" src="/" alt="Image" /></div>
+              	<div><img id="icon" class="img-fluid" src="<c:url value="/assets/img/no_image.png" />" alt="Image" /></div>
               	<input type="file" class="form-control-file" name="iconupload" id="iconupload" onchange=loadIcon(event) />
               </div>
               <div class="e-message"></div>

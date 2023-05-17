@@ -23,5 +23,7 @@ public interface IRoleService {
 	
 	public Role getRoleById(long id);
 	
-	public List<String> getRoleStringByAccountId(long account_id);
+	public String getRoleByAccountId(long account_id);
+	
+	public int setRoleByAccountId(long account_id, String role);
 }

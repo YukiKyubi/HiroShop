@@ -51,7 +51,7 @@
                         		<td style="width: 250px;">${ item.value.product.name }</td>
                         		<td style="text-align: center;">
                           			<input class="edit-btn" data-id="${ item.key }" id="item-${ item.key }" style="width: 70px;" type="number" min="1" max="${ item.value.product.quantity }" value="${ item.value.quantity }" />
-                          			<input id="pquantity" type="hidden" value="${ item.value.product.quantity }" />
+                          			<input class="pquantity" type="hidden" value="${ item.value.product.quantity }" />
                           			<div class="e-message"></div>
                         		</td>
                         		<td style="width: 160px; text-align: end;">
@@ -106,12 +106,10 @@
   
 	<content tag="script">
 		<script type="text/javascript">
-			var mess_container = document.querySelector('.mess-container')
-		    mess_container.onclick = function() {
-		      mess_container.classList.remove('d-flex')
-		    }
 			$('.edit-btn').bind('keyup mouseup', function() {
+				var element = $(this).parent().children('.e-message')
 				var id = $(this).data("id")
+				var pquantity = $(this).parent().children('.pquantity').val()
 				var quantity = $('#item-' + id).val()
 				$.ajax({
 					type: 'get',
@@ -121,10 +119,9 @@
 	  				success: function(response) {
 	  					console.log(response)
 	  					if(response.hasOwnProperty('-1')) {
-	  						var pquantity = $('#pquantity').val()
-	  						$('.e-message').html('Số lượng > 0 hoặc <= ' + pquantity)
+	  						element.text('Số lượng > 0 hoặc <= ' + pquantity)
 	  						setTimeout(function () {
-	  							$('.e-message').html('')
+	  							element.text('')
 	  						}, 3000)
 	  					}
 	  					else {
@@ -141,10 +138,9 @@
 	  					}
 	  				},
 	  				error: function(XMLHttpRequest, textStatus, errorThrown) {
-	  					var pquantity = $('#pquantity').val()
-	  					$('.e-message').html('Số lượng > 0 hoặc <= ' + pquantity)
+	  					element.text('Số lượng > 0 hoặc <= ' + pquantity)
 	  					setTimeout(function () {
-	  							$('.e-message').html('')
+	  							element.text('')
 	  					}, 3000)
 	  				}
 				})
@@ -157,6 +153,10 @@
 		        }, 5000)
 		      }
 		    })
+		    var mess_container = document.querySelector('.mess-container')
+		    mess_container.onclick = function() {
+		      mess_container.classList.remove('d-flex')
+		    }
 		</script>
 	</content>
 </body>
